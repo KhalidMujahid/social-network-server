@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 3001;
 app.use(helmet());
 app.use(
   cors({
-    origin: process.env.NODE_ENV === "development" ? "*" : "",
+    origin: process.env.NODE_ENV === "development" ? "*" : process.env.GLOBAL_HOST,
   })
 );
 
@@ -43,7 +43,7 @@ const server = app.listen(PORT, () =>
 // socket connections
 const io = socket(server, {
   cors: {
-    origin: process.env.NODE_ENV === "development" ? "*" : "",
+    origin: process.env.NODE_ENV === "development" ? "*" : process.env.GLOBAL_HOST,
     credentials: true,
   },
 });
